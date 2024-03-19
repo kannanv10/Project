@@ -1,5 +1,3 @@
-// ignore_for_file: unused_field
-
 import 'package:flutter/material.dart';
 
 class CalculationPage extends StatefulWidget {
@@ -11,7 +9,7 @@ class CalculationPage extends StatefulWidget {
   final String cropSpacing;
   final String dripperDischarge;
 
-  CalculationPage({
+  const CalculationPage({super.key,
     required this.selectedCrop,
     required this.selectedDuration,
     required this.selectedDate,
@@ -28,7 +26,6 @@ class CalculationPage extends StatefulWidget {
 class _CalculationPageState extends State<CalculationPage> with SingleTickerProviderStateMixin {
   double? result;
   late AnimationController _controller;
-  late Animation<double> _animation;
   double growthPercentage = 0.0;
   bool isIrrigationEnabled = false;
   String irrigationButtonText = 'Schedule Irrigation';
@@ -37,13 +34,9 @@ class _CalculationPageState extends State<CalculationPage> with SingleTickerProv
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 1000),
       vsync: this,
     );
-    _animation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller)
-      ..addListener(() {
-        setState(() {});
-      });
     _controller.forward();
     // Call the function to perform calculations
     performCalculations();
@@ -115,12 +108,12 @@ class _CalculationPageState extends State<CalculationPage> with SingleTickerProv
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Calculation Page'),
+        title: const Text('Calculation Page'),
       ),
       body: Center(
         child: Container(
-          margin: EdgeInsets.all(20.0),
-          padding: EdgeInsets.all(20.0),
+          margin: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20.0),
           decoration: BoxDecoration(
             color: Colors.deepPurple[700],
             borderRadius: BorderRadius.circular(20.0),
@@ -129,7 +122,7 @@ class _CalculationPageState extends State<CalculationPage> with SingleTickerProv
                 color: Colors.black.withOpacity(0.3),
                 spreadRadius: 5,
                 blurRadius: 7,
-                offset: Offset(0, 3), // changes position of shadow
+                offset: const Offset(0, 3), // changes position of shadow
               ),
             ],
           ),
@@ -138,10 +131,10 @@ class _CalculationPageState extends State<CalculationPage> with SingleTickerProv
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                '${widget.selectedCrop}',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                widget.selectedCrop,
+                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               SizedBox(
                 width: 200,
                 height: 200,
@@ -151,21 +144,21 @@ class _CalculationPageState extends State<CalculationPage> with SingleTickerProv
                     CircularProgressIndicator(
                       value: growthPercentage / 100,
                       backgroundColor: Colors.grey[300],
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+                      valueColor: const AlwaysStoppedAnimation<Color>(Colors.green),
                       strokeWidth: 150,
                     ),
                     Text(
                       '${growthPercentage.toStringAsFixed(0)}%',
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black54),
+                      style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black54),
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     'Irrigation Motor',
                     style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
@@ -180,7 +173,7 @@ class _CalculationPageState extends State<CalculationPage> with SingleTickerProv
                   ),
                 ],
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   // Placeholder for scheduling irrigation
@@ -199,16 +192,16 @@ class _CalculationPageState extends State<CalculationPage> with SingleTickerProv
                 },
                 child: Text(irrigationButtonText),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   // Placeholder for irrigation tomorrow
                 },
-                child: Text('Irrigate Tomorrow'),
+                child: const Text('Irrigate Tomorrow'),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Container(
-                padding: EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(10.0),
                 decoration: BoxDecoration(
                   color: const Color.fromARGB(255, 233, 109, 255),
                   borderRadius: BorderRadius.circular(10.0),
@@ -217,13 +210,13 @@ class _CalculationPageState extends State<CalculationPage> with SingleTickerProv
                       color: Colors.black.withOpacity(0.3),
                       spreadRadius: 5,
                       blurRadius: 7,
-                      offset: Offset(0, 3), // changes position of shadow
+                      offset: const Offset(0, 3), // changes position of shadow
                     ),
                   ],
                 ),
                 child: Text(
                   'Operation Time: ${result ?? 'N/A'} minutes',
-                  style: TextStyle(fontSize: 18, color: Colors.white),
+                  style: const TextStyle(fontSize: 18, color: Colors.white),
                 ),
               ),
             ],

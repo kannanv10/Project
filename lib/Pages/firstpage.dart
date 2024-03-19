@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:trail2/Pages/CalculationPage.dart'; // Import the CalculationPage
+import 'package:trail2/Pages/CalculationPage.dart';
 
 class CropDetailsPage extends StatefulWidget {
   @override
@@ -7,31 +7,34 @@ class CropDetailsPage extends StatefulWidget {
 }
 
 class _CropDetailsPageState extends State<CropDetailsPage> {
-  TextEditingController _cropSpacingController = TextEditingController();
-  TextEditingController _rowSpacingController = TextEditingController();
-  TextEditingController _dripperDischargeController = TextEditingController();
+  final TextEditingController _cropSpacingController = TextEditingController();
+  final TextEditingController _rowSpacingController = TextEditingController();
+  final TextEditingController _dripperDischargeController = TextEditingController();
 
   String _selectedCrop = '--Select Variety--';
   String _selectedDuration = '--Select Duration--';
   String _selectedWettingArea = '--Select Area Wetting Percentage--';
+  List<String> cropDropDown = ['--Select Variety--', 'Tomato', 'Cucumber', 'Capsicum'];
+  List<String> durationDropDown = ['--Select Duration--', '90', '110', '150'];
+  List<String> areaDropDown = ['--Select Area Wetting Percentage--', '50', '70', '80'];
 
   DateTime _selectedDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+
       backgroundColor: Colors.purple[900], // Dark purple background
       appBar: AppBar(
         backgroundColor: Colors.black26,
-        title: Text('Crop Details'),
-        titleTextStyle: TextStyle(color: Colors.white),
+        title: const Text('Crop Details'),
+        titleTextStyle: const TextStyle(color: Colors.white),
       ),
       body: SingleChildScrollView(
-        
+
         child: Container(
           width: MediaQuery.of(context).size.width * 0.8,
-          padding: EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20.0),
           decoration: BoxDecoration(
             color: Colors.deepPurple[200], // Light purple background
             borderRadius: BorderRadius.circular(20.0), // Rounded corners
@@ -42,65 +45,65 @@ class _CropDetailsPageState extends State<CropDetailsPage> {
               buildDropdownButton(
                 'Crop Name',
                 _selectedCrop,
-                ['--Select Variety--', 'Tomato', 'Cucumber', 'Capsicum'],
-                (String? newValue) {
+                cropDropDown,
+                    (String? newValue) {
                   setState(() {
                     _selectedCrop = newValue!;
                   });
                 },
                 'Variety', // Hint text
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               buildDropdownButton(
                 'Crop Duration',
                 _selectedDuration,
-                ['--Select Duration--', '90', '110', '150'],
-                (String? newValue) {
+                durationDropDown,
+                    (String? newValue) {
                   setState(() {
                     _selectedDuration = newValue!;
                   });
                 },
                 'Number of days', // Hint text
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               buildDatePickerButton('Sowing Date'),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               buildDropdownButton(
                 'Area of Wetting',
                 _selectedWettingArea,
-                ['--Select Area Wetting Percentage--', '50', '70', '80'],
-                (String? newValue) {
+                areaDropDown,
+                    (String? newValue) {
                   setState(() {
                     _selectedWettingArea = newValue!;
                   });
                 },
                 'Percentage', // Hint text
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               TextField(
                 controller: _rowSpacingController,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Row Spacing',
                 ),
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               TextField(
                 controller: _cropSpacingController,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Crop Spacing',
                 ),
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               TextField(
                 controller: _dripperDischargeController,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Dripper Discharge',
                 ),
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               ElevatedButton(
                 onPressed: () {
                   // Navigate to CalculationPage and pass crop details
@@ -119,7 +122,7 @@ class _CropDetailsPageState extends State<CropDetailsPage> {
                     ),
                   );
                 },
-                child: Text('Save'),
+                child: const Text('Save'),
               ),
             ],
           ),
@@ -129,12 +132,12 @@ class _CropDetailsPageState extends State<CropDetailsPage> {
   }
 
   Widget buildDropdownButton(
-    String labelText,
-    String value,
-    List<String> items,
-    Function(String?) onChanged,
-    String hintText,
-  ) {
+      String labelText,
+      String value,
+      List<String> items,
+      Function(String?) onChanged,
+      String hintText,
+      ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -155,8 +158,8 @@ class _CropDetailsPageState extends State<CropDetailsPage> {
             }).toList(),
             hint: Text(hintText),
             isExpanded: true,
-            underline: SizedBox(), // Remove the underline
-            style: TextStyle(color: Colors.black), // Text color
+            underline: const SizedBox(), // Remove the underline
+            style: const TextStyle(color: Colors.black), // Text color
           ),
         ),
       ],
@@ -174,10 +177,6 @@ class _CropDetailsPageState extends State<CropDetailsPage> {
           onPressed: () {
             _selectDate(context);
           },
-          child: Text(
-            formattedDate,
-            style: TextStyle(color: Colors.black), // Text color
-          ),
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(Colors.white), // Background color
             shape: MaterialStateProperty.all(
@@ -185,6 +184,10 @@ class _CropDetailsPageState extends State<CropDetailsPage> {
                 borderRadius: BorderRadius.circular(10.0), // Rounded corners
               ),
             ),
+          ),
+          child: Text(
+            formattedDate,
+            style: const TextStyle(color: Colors.black), // Text color
           ),
         ),
       ],
