@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:trail2/Pages/firstpage.dart';
 import 'package:trail2/Pages/CalculationPage.dart';
 
+import 'Pages/login/LoginScreen.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -36,7 +38,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue
   ,
       ),
-      home: CropDetailsPage()
+      home: LoginScreen()
     );
   }
 }
