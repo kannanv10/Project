@@ -13,9 +13,16 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  /*void initializeData() {
+    Secrets.AUTH_TOKEN = UserSessionDetails.getToken();
+    UserSessionDetails.initHive()
+        .whenComplete(() => Secrets.AUTH_TOKEN = UserSessionDetails.getToken());
+  }*/
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // initializeData();
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
@@ -38,8 +45,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue
   ,
       ),
+      //home: if(UserSessionDetails.prefs.get("isUserAlreadyLoggedIn")) ? GOtpage2 : LoginScreen()
       home: LoginScreen()
     );
   }
 }
-

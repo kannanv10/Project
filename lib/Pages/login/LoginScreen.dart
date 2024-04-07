@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trail2/Pages/utils/UserSessionDetails.dart';
 
 import 'LoginApiService.dart';
 
@@ -181,6 +182,10 @@ class _LoginScreen extends State<LoginScreen> {
                               ),
                               onTap: () {
                                 showOrHideProgress(true);
+                                if (email == "Kannan" && password == "1234") {
+                                  navigateToDashboard(context);
+                                }
+
                                 /*if (password.isNotEmpty) {
                                   LoginApiService()
                                       .doLogin(email, password)
@@ -195,7 +200,7 @@ class _LoginScreen extends State<LoginScreen> {
                                 } else {
                                   showOrHideProgress(false);
                                 }*/
-                                navigateToDashboard(context);
+                                //navigateToDashboard(context);
                               },
                             ),
                           ),
@@ -255,6 +260,8 @@ class _LoginScreen extends State<LoginScreen> {
   }
 
   navigateToDashboard(BuildContext context) {
+    //set to shared preferences.
+    // todo add shared preference initialization in UserSessionDetails
     showOrHideProgress(false);
     LoginApiService().navigateDashboardPage(context);
   }
