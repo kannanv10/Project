@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'LoginApiService.dart';
 
 class _LoginScreen extends State<LoginScreen> {
@@ -179,8 +179,10 @@ class _LoginScreen extends State<LoginScreen> {
                                   ],
                                 ),
                               ),
-                              onTap: () {
+                              onTap: ()
+                              {
                                 showOrHideProgress(true);
+
                                 /*if (password.isNotEmpty) {
                                   LoginApiService()
                                       .doLogin(email, password)

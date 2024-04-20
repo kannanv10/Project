@@ -1,15 +1,26 @@
 // ignore_for_file: prefer_const_constructors, unused_import
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:trail2/Pages/firstpage.dart';
 import 'package:trail2/Pages/CalculationPage.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'Pages/login/LoginScreen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+      options: FirebaseOptions(apiKey: "AIzaSyDSSIBsrEztVBv4DiP8OTFJxh7F1degUNY",
+          appId: "1:778925904779:android:4e7786eb5d68009a17158e",
+          messagingSenderId: "778925904779",
+          projectId:"flutter-d8e01",
+          databaseURL: "https://flutter-d8e01-default-rtdb.firebaseio.com/")
+  );
+  await FirebaseMessaging.instance.subscribeToTopic("sample");
   runApp(const MyApp());
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

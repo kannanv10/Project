@@ -34,6 +34,7 @@ class _CropDetailsPageState extends State<CropDetailsPage> {
 
         child: Container(
           width: MediaQuery.of(context).size.width * 0.8,
+          margin: EdgeInsets.symmetric(vertical: 50,horizontal: 50),
           padding: const EdgeInsets.all(20.0),
           decoration: BoxDecoration(
             color: Colors.deepPurple[200], // Light purple background
@@ -41,6 +42,7 @@ class _CropDetailsPageState extends State<CropDetailsPage> {
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               buildDropdownButton(
                 'Crop Name',
